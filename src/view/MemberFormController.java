@@ -2,17 +2,25 @@ package view;
 
 import com.jfoenix.controls.JFXTextField;
 import controller.MemberController;
+import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import model.Member;
 
+import java.net.URL;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.ResourceBundle;
 
-public class MemberFormController {
+public class MemberFormController implements Initializable {
 
     public JFXTextField txtSearchId;
     public TextField txtId;
@@ -20,7 +28,22 @@ public class MemberFormController {
     public TextField txtAddress;
     public TextField txtEmail;
     public TextField txtTel;
+    public TableView tblMember;
+    public TableColumn colId;
+    public TableColumn colName;
+    public TableColumn colAddress;
+    public TableColumn colEmail;
+    public TableColumn colTel;
 
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        loadAllMembers();
+       /* tblMember.getColumns().get(0).setCellValueFactory(new PropertyValueFactory<>("cid"));
+        tblCustomers.getColumns().get(1).setCellValueFactory(new PropertyValueFactory<>("name"));
+        tblCustomers.getColumns().get(2).setCellValueFactory(new PropertyValueFactory<>("town"));
+        tblCustomers.getColumns().get(3).setCellValueFactory(new PropertyValueFactory<>("salary"));*/
+    }
 
     public void AddMember(ActionEvent event) {
         String id = txtId.getText();
@@ -68,6 +91,7 @@ public class MemberFormController {
 
         if (isAdded){
             new Alert(Alert.AlertType.INFORMATION,"Member has been saved").show();
+            loadAllMembers();
             clearTextFields();
         }else {
             new Alert(Alert.AlertType.CONFIRMATION,"Save Member was failed").show();
@@ -122,6 +146,7 @@ public class MemberFormController {
 
         if (isUpdated){
             new Alert(Alert.AlertType.INFORMATION,"Member has been Updated").show();
+            loadAllMembers();
             clearTextFields();
         }
     }
@@ -166,7 +191,7 @@ public class MemberFormController {
     }
 
     public void GetAll(ActionEvent event) {
-
+        loadAllMembers();
     }
 
     public void SearchMember(ActionEvent event) {
@@ -225,4 +250,21 @@ public class MemberFormController {
         txtEmail.setText("");
         txtTel.setText("");
     }
+
+    public void loadAllMembers(){
+
+        ArrayList<Member> allMembers = MemberController.getAllMembers();
+
+        colId.setCellValueFactory(new PropertyValueFactory<>("mid"));
+        colName.setCellValueFactory(new PropertyValueFactory<>("name"));
+        colAddress.setCellValueFactory(new PropertyValueFactory<>("address"));
+        colEmail.setCellValueFactory(new PropertyValueFactory<>("email"));
+        colTel.setCellValueFactory(new PropertyValueFactory<>("tel"));
+
+
+        tblMember.getColumns().setAll(colId,colName,colAddress,colEmail,colTel);
+        tblMember.setItems(FXCollections.observableArrayList(allMembers));
+    }
+
+
 }

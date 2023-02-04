@@ -3,6 +3,7 @@ package controller;
 import model.Member;
 
 import java.sql.*;
+import java.util.ArrayList;
 
 public class MemberController {
 
@@ -130,6 +131,41 @@ public class MemberController {
             e.printStackTrace();
         }
        return null;
+    }
+
+    public static ArrayList<Member> getAllMembers(){
+
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/library",
+                    "root", "1234");
+            PreparedStatement statement = connection.prepareStatement("select * from member");
+
+            ResultSet resultSet = statement.executeQuery();
+
+            ArrayList<Member> members=new ArrayList<>();
+
+            while (resultSet.next()){
+                Member member=new Member();
+
+                member.setMid(resultSet.getString(1));
+                member.setName(resultSet.getString(2));
+                member.setAddress(resultSet.getString(3));
+                member.setEmail(resultSet.getString(4));
+                member.setTel(resultSet.getString(5));
+
+                members.add(member);
+            }
+
+              return members;
+
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+            return null;
+
     }
 
 }
