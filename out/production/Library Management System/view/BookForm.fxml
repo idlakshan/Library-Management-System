@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="root" prefHeight="672.0" prefWidth="911.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.BookFormController">
+    <children>
+        <TableView fx:id="tblBook" layoutX="19.0" layoutY="393.0" prefHeight="271.0" prefWidth="885.0">
+            <columns>
+                <TableColumn fx:id="colId" prefWidth="87.0" text="ID" />
+                <TableColumn fx:id="colName" prefWidth="270.0" text="Name" />
+                <TableColumn fx:id="colAuthor" prefWidth="301.0" text="Author" />
+                <TableColumn fx:id="colQty" prefWidth="120.0" text="Qty" />
+                <TableColumn fx:id="colPrice" prefWidth="106.0" text="Price" />
+            </columns>
+        </TableView>
+        <TextField fx:id="txtId" layoutX="16.0" layoutY="187.0" prefHeight="31.0" prefWidth="220.0" promptText="Enter ID" />
+        <TextField fx:id="txtName" layoutX="348.0" layoutY="187.0" prefHeight="31.0" prefWidth="220.0" promptText="Enter Name" />
+        <TextField fx:id="txtAuthor" layoutX="659.0" layoutY="187.0" prefHeight="31.0" prefWidth="220.0" promptText="Enter Author Name" />
+        <TextField fx:id="txtQty" layoutX="15.0" layoutY="270.0" prefHeight="31.0" prefWidth="220.0" promptText="Enter Qty" />
+        <TextField fx:id="txtPrice" layoutX="348.0" layoutY="271.0" prefHeight="31.0" prefWidth="220.0" promptText="Enter Price" />
+        <JFXButton buttonType="RAISED" layoutX="132.0" layoutY="333.0" onAction="#AddBook" prefHeight="35.0" prefWidth="147.0" style="-fx-background-color: #1a18a8; -fx-background-radius: 10px;" text="Add" textFill="WHITE">
+            <font>
+                <Font name="Arial Rounded MT Bold" size="15.0" />
+            </font></JFXButton>
+        <JFXButton buttonType="RAISED" layoutX="297.0" layoutY="333.0" onAction="#UpdateBook" prefHeight="35.0" prefWidth="147.0" style="-fx-background-color: #ffbc12; -fx-background-radius: 10px;" text="Update" textFill="WHITE">
+            <font>
+                <Font name="Arial Rounded MT Bold" size="15.0" />
+            </font></JFXButton>
+        <JFXButton buttonType="RAISED" layoutX="462.0" layoutY="333.0" onAction="#DeleteBook" prefHeight="35.0" prefWidth="147.0" style="-fx-background-color: #ff2a12; -fx-background-radius: 10px;" text="Delete" textFill="WHITE">
+            <font>
+                <Font name="Arial Rounded MT Bold" size="15.0" />
+            </font></JFXButton>
+        <JFXButton buttonType="RAISED" layoutX="625.0" layoutY="333.0" onAction="#GetAll" prefHeight="35.0" prefWidth="147.0" style="-fx-background-color: #30b500; -fx-background-radius: 10px;" text="Get All" textFill="WHITE">
+            <font>
+                <Font name="Arial Rounded MT Bold" size="15.0" />
+            </font></JFXButton>
+        <Label layoutX="16.0" layoutY="160.0" prefHeight="21.0" prefWidth="107.0" text="Book ID">
+            <font>
+                <Font name="Arial Rounded MT Bold" size="15.0" />
+            </font></Label>
+        <Label layoutX="348.0" layoutY="160.0" prefHeight="21.0" prefWidth="107.0" text="Name">
+            <font>
+                <Font name="Arial Rounded MT Bold" size="15.0" />
+            </font>
+        </Label>
+        <Label layoutX="659.0" layoutY="160.0" prefHeight="21.0" prefWidth="107.0" text="Author">
+            <font>
+                <Font name="Arial Rounded MT Bold" size="15.0" />
+            </font>
+        </Label>
+        <Label layoutX="16.0" layoutY="243.0" prefHeight="21.0" prefWidth="107.0" text="Qty On Hand">
+            <font>
+                <Font name="Arial Rounded MT Bold" size="15.0" />
+            </font>
+        </Label>
+        <Label layoutX="348.0" layoutY="243.0" prefHeight="21.0" prefWidth="107.0" text="Price">
+            <font>
+                <Font name="Arial Rounded MT Bold" size="15.0" />
+            </font>
+        </Label>
+        <JFXTextField fx:id="txtSearchId" layoutX="346.0" layoutY="89.0" prefHeight="31.0" prefWidth="140.0" promptText="Book ID" />
+        <JFXButton buttonType="RAISED" layoutX="504.0" layoutY="90.0" onAction="#SearchBook" prefHeight="35.0" prefWidth="80.0" style="-fx-background-color: #7d807e; -fx-background-radius: 20px;" text="Search" textFill="WHITE">
+            <font>
+                <Font name="Arial Rounded MT Bold" size="15.0" />
+            </font>
+        </JFXButton>
+        <Label layoutX="364.0" layoutY="3.0" prefHeight="47.0" prefWidth="180.0" text="Books Form" underline="true">
+            <font>
+                <Font name="Arial Rounded MT Bold" size="26.0" />
+            </font>
+        </Label>
+        <Button layoutX="10.0" layoutY="14.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="80.0" style="-fx-background-color: white; -fx-border-color: white;">
+            <font>
+                <Font name="System Bold" size="24.0" />
+            </font></Button>
+        <ImageView fitHeight="53.0" fitWidth="56.0" layoutX="20.0" layoutY="14.0" onMouseClicked="#BackOnAction" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@assets/back.jpg" />
+            </image>
+        </ImageView>
+        <ImageView fitHeight="149.0" fitWidth="134.0" layoutX="764.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@assets/book.png" />
+            </image>
+        </ImageView>
+    </children>
+</AnchorPane>

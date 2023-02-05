@@ -1,27 +1,27 @@
 package controller;
 
 import javafx.scene.control.Alert;
-import model.Member;
+import model.Book;
 
 import java.sql.*;
 import java.util.ArrayList;
 
-public class MemberController {
+public class BookController {
 
-    public static boolean addMember(Member member){
+    public static boolean addBook(Book book){
 
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/library",
                     "root", "1234");
 
-            PreparedStatement statement = connection.prepareStatement("insert into member values(?,?,?,?,?)");
+            PreparedStatement statement = connection.prepareStatement("insert into book values(?,?,?,?,?)");
 
-            statement.setObject(1,member.getMid());
-            statement.setObject(2,member.getName());
-            statement.setObject(3,member.getAddress());
-            statement.setObject(4,member.getEmail());
-            statement.setObject(5,member.getTel());
+            statement.setObject(1,book.getBid());
+            statement.setObject(2,book.getName());
+            statement.setObject(3,book.getAuthor());
+            statement.setObject(4,book.getQty());
+            statement.setObject(5,book.getPrice());
 
             int i = statement.executeUpdate();
 
@@ -31,36 +31,7 @@ public class MemberController {
                 return false;
             }
 
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return false;
-    }
 
-    public static boolean updateMember(Member member){
-
-        try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/library",
-                    "root", "1234");
-
-            PreparedStatement statement = connection.prepareStatement("update member set name=?,address=?,email=?,tel=? where mid=?");
-
-            statement.setObject(1,member.getName());
-            statement.setObject(2,member.getAddress());
-            statement.setObject(3,member.getEmail());
-            statement.setObject(4,member.getTel());
-            statement.setObject(5,member.getMid());
-
-            int i = statement.executeUpdate();
-
-            if (i>0){
-                return true;
-            }else {
-                return false;
-            }
 
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
@@ -70,17 +41,14 @@ public class MemberController {
 
         return false;
     }
-
-
-    public static boolean deleteMember(String deleteId){
-
+    public static boolean deleteBook(String id){
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/library",
                     "root", "1234");
-            PreparedStatement statement = connection.prepareStatement("delete from member where mid =?");
+            PreparedStatement statement = connection.prepareStatement("delete from book where bid=?");
 
-            statement.setObject(1,deleteId);
+            statement.setObject(1,id);
 
             int i = statement.executeUpdate();
 
@@ -98,77 +66,109 @@ public class MemberController {
 
         return false;
     }
-
-
-    public static Member searchMember(String searchId){
-
+    public static boolean updateBook(Book book){
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/library",
                     "root", "1234");
-            PreparedStatement statement = connection.prepareStatement("select * from member where mid=?");
+            PreparedStatement statement = connection.prepareStatement("update book set name=?,author=?,qty=?,price=? where bid=?");
 
-            statement.setObject(1,searchId);
-            ResultSet resultSet = statement.executeQuery();
+            statement.setObject(1,book.getName());
+            statement.setObject(2,book.getAuthor());
+            statement.setObject(3,book.getQty());
+            statement.setObject(4,book.getPrice());
+            statement.setObject(5,book.getBid());
 
-            Member member=new Member();
+            int i = statement.executeUpdate();
 
-            if (resultSet.next()){
-                member.setMid(resultSet.getString(1));
-                member.setName(resultSet.getString(2));
-                member.setAddress(resultSet.getString(3));
-                member.setEmail(resultSet.getString(4));
-                member.setTel(resultSet.getString(5));
-
-                return member;
-
+            if(i>0){
+                return true;
             }else {
-                new Alert(Alert.AlertType.CONFIRMATION,"There is no Member such as a given number").show();
+                return false;
             }
-
-
-
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         } catch (SQLException e) {
             e.printStackTrace();
         }
-       return null;
+
+
+        return false;
     }
 
-    public static ArrayList<Member> getAllMembers(){
+
+    public static Book searchBook(String id){
 
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/library",
                     "root", "1234");
-            PreparedStatement statement = connection.prepareStatement("select * from member");
+            PreparedStatement statement = connection.prepareStatement("select * from book where bid=?");
+
+            statement.setObject(1,id);
 
             ResultSet resultSet = statement.executeQuery();
 
-            ArrayList<Member> members=new ArrayList<>();
+                Book book=new Book();
+
+            if(resultSet.next()){
+                book.setBid(resultSet.getString(1));
+                book.setName(resultSet.getString(2));
+                book.setAuthor(resultSet.getString(3));
+                book.setQty(Integer.parseInt(resultSet.getString(4)));
+                book.setPrice(Double.parseDouble(resultSet.getString(5)));
+
+                return book;
+            }else {
+                new Alert(Alert.AlertType.CONFIRMATION,"There is no book such as a given Id").show();
+            }
+
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+
+        return null;
+    }
+
+    public static ArrayList<Book> getAllBooks(){
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/library",
+                    "root", "1234");
+            PreparedStatement statement = connection.prepareStatement("select * from book");
+
+            ResultSet resultSet = statement.executeQuery();
+
+            ArrayList<Book> books=new ArrayList<>();
 
             while (resultSet.next()){
-                Member member=new Member();
+              Book book=new Book();
 
-                member.setMid(resultSet.getString(1));
-                member.setName(resultSet.getString(2));
-                member.setAddress(resultSet.getString(3));
-                member.setEmail(resultSet.getString(4));
-                member.setTel(resultSet.getString(5));
+              book.setBid(resultSet.getString(1));
+              book.setName(resultSet.getString(2));
+              book.setAuthor(resultSet.getString(3));
+              book.setQty(resultSet.getInt(4));
+              book.setPrice(resultSet.getDouble(5));
 
-                members.add(member);
+                books.add(book);
             }
+          return books;
 
-              return members;
+
 
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         } catch (SQLException e) {
             e.printStackTrace();
         }
-            return null;
 
+
+
+
+
+        return null;
     }
-
 }

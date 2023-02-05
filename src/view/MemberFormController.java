@@ -4,14 +4,22 @@ import com.jfoenix.controls.JFXTextField;
 import controller.MemberController;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.DragEvent;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 import model.Member;
 
+import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -34,6 +42,8 @@ public class MemberFormController implements Initializable {
     public TableColumn colAddress;
     public TableColumn colEmail;
     public TableColumn colTel;
+    public AnchorPane root;
+
 
 
     @Override
@@ -160,6 +170,7 @@ public class MemberFormController implements Initializable {
         if (isDeleted){
             new Alert(Alert.AlertType.INFORMATION,"Member has been Deleted").show();
             clearTextFields();
+            loadAllMembers();
         }else{
             new Alert(Alert.AlertType.CONFIRMATION,"There is no Member such as a given number").show();
         }
@@ -267,4 +278,16 @@ public class MemberFormController implements Initializable {
     }
 
 
+    public void BackOnAction(MouseEvent mouseEvent) {
+        try {
+            Parent parent= FXMLLoader.load(this.getClass().getResource("HomeForm.fxml"));
+            Stage primaryStage= (Stage) root.getScene().getWindow();
+            Scene scene=new Scene(parent);
+            primaryStage.setScene(scene);
+            // primaryStage.setTitle("Login Form");
+            primaryStage.centerOnScreen();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }
