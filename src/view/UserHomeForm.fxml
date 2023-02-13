@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="root" prefHeight="467.0" prefWidth="640.0" styleClass="root" stylesheets="@css/Style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.HomeFormController">
+<AnchorPane fx:id="root" prefHeight="467.0" prefWidth="640.0" styleClass="root" stylesheets="@css/Style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.UserHomeFormController">
    <children>
       <Button layoutX="48.0" layoutY="151.0" mnemonicParsing="false" onAction="#MemberLogin" prefHeight="59.0" prefWidth="125.0" style="-fx-background-radius: 10px; -fx-border-color: #ff3217; -fx-border-width: 3px; -fx-border-radius: 10px;" text="Members">
          <font>

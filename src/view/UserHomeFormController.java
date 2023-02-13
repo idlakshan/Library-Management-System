@@ -10,7 +10,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.net.URL;
 
-public class HomeFormController {
+public class UserHomeFormController {
 
     public AnchorPane root;
 
