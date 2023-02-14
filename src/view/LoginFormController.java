@@ -13,7 +13,6 @@ import javafx.stage.Stage;
 import model.User;
 
 import java.io.IOException;
-import java.net.URL;
 import java.sql.SQLException;
 
 public class LoginFormController {
@@ -31,7 +30,7 @@ public class LoginFormController {
 
         if(role.equals("admin")){
             try {
-                Parent parent= FXMLLoader.load(this.getClass().getResource("MemberForm.fxml"));
+                Parent parent= FXMLLoader.load(this.getClass().getResource("AdminDashboardForm.fxml"));
                 Stage primaryStage= (Stage) root.getScene().getWindow();
                 Scene scene=new Scene(parent);
                 primaryStage.setScene(scene);
@@ -44,7 +43,7 @@ public class LoginFormController {
 
         }else if(role.equals("user")){
             try {
-                Parent parent= FXMLLoader.load(this.getClass().getResource("UserHomeForm.fxml"));
+                Parent parent= FXMLLoader.load(this.getClass().getResource("UserDashboardForm.fxml"));
                 Stage primaryStage= (Stage) root.getScene().getWindow();
                 Scene scene=new Scene(parent);
                 primaryStage.setScene(scene);

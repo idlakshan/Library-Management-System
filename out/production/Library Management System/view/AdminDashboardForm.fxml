@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="root" prefHeight="484.0" prefWidth="813.0" style="-fx-background-color: #fffdf5;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.AdminDashboardFormController">
+    <children>
+        <ImageView fitHeight="196.0" fitWidth="214.0" layoutX="55.0" layoutY="106.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@assets/user.png" />
+            </image>
+        </ImageView>
+        <ImageView fitHeight="197.0" fitWidth="205.0" layoutX="314.0" layoutY="117.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@assets/books.png" />
+            </image>
+        </ImageView>
+        <ImageView fitHeight="197.0" fitWidth="231.0" layoutX="556.0" layoutY="129.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@assets/reports.png" />
+            </image>
+        </ImageView>
+        <JFXButton buttonType="RAISED" layoutX="106.0" layoutY="322.0" prefHeight="46.0" prefWidth="140.0" style="-fx-background-color: #1e39d4; -fx-background-radius: 6px;" text="User Controller" textFill="WHITE">
+            <font>
+                <Font name="Arial Rounded MT Bold" size="15.0" />
+            </font>
+        </JFXButton>
+        <JFXButton buttonType="RAISED" layoutX="349.0" layoutY="322.0" onAction="#BookLogin" prefHeight="46.0" prefWidth="140.0" style="-fx-background-color: #ebc807; -fx-background-radius: 6px;" text="Add Book" textFill="WHITE">
+            <font>
+                <Font name="Arial Rounded MT Bold" size="15.0" />
+            </font>
+        </JFXButton>
+        <JFXButton buttonType="RAISED" layoutX="596.0" layoutY="322.0" prefHeight="46.0" prefWidth="140.0" style="-fx-background-color: #1eeb07; -fx-background-radius: 6px;" text="Reports" textFill="WHITE">
+            <font>
+                <Font name="Arial Rounded MT Bold" size="15.0" />
+            </font>
+        </JFXButton>
+        <ImageView fitHeight="59.0" fitWidth="65.0" layoutX="8.0" layoutY="10.0" onMouseClicked="#backOnAction" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@assets/back.jpg" />
+            </image>
+        </ImageView>
+    </children>
+</AnchorPane>
