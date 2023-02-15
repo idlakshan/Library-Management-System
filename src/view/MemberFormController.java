@@ -44,10 +44,6 @@ public class MemberFormController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         loadAllMembers();
-       /* tblMember.getColumns().get(0).setCellValueFactory(new PropertyValueFactory<>("cid"));
-        tblCustomers.getColumns().get(1).setCellValueFactory(new PropertyValueFactory<>("name"));
-        tblCustomers.getColumns().get(2).setCellValueFactory(new PropertyValueFactory<>("town"));
-        tblCustomers.getColumns().get(3).setCellValueFactory(new PropertyValueFactory<>("salary"));*/
     }
 
     public void AddMember(ActionEvent event) {
@@ -57,33 +53,6 @@ public class MemberFormController implements Initializable {
         String email = txtEmail.getText();
         String tel = txtTel.getText();
 
-        /*try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/library",
-                    "root", "1234");
-            PreparedStatement statement = connection.prepareStatement("insert into member values(?,?,?,?,?)");
-
-            statement.setObject(1,id);
-            statement.setObject(2,name);
-            statement.setObject(3,address);
-            statement.setObject(4,email);
-            statement.setObject(5,tel);
-
-            int i = statement.executeUpdate();
-
-            if (i>0){
-                new Alert(Alert.AlertType.INFORMATION,"Member has been saved").show();
-                clearTextFields();
-            }else {
-                new Alert(Alert.AlertType.CONFIRMATION,"Save Member was failed").show();
-            }
-
-
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }*/
 
         Member member=new Member();
         member.setMid(id);
@@ -111,33 +80,6 @@ public class MemberFormController implements Initializable {
         String email = txtEmail.getText();
         String tel = txtTel.getText();
 
-       /* try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/library",
-                    "root", "1234");
-
-            PreparedStatement statement = connection.prepareStatement("update member set name=?,address=?,email=?,tel=? where mid=?");
-
-            statement.setObject(1,name);
-            statement.setObject(2,address);
-            statement.setObject(3,email);
-            statement.setObject(4,tel);
-            statement.setObject(5,id);
-
-            int i = statement.executeUpdate();
-
-            if (i>0){
-                new Alert(Alert.AlertType.INFORMATION,"Member has been Updated").show();
-                clearTextFields();
-            }else{
-                new Alert(Alert.AlertType.CONFIRMATION,"Update failed").show();
-            }
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-*/
 
         Member member=new Member();
         member.setMid(id);
@@ -170,30 +112,7 @@ public class MemberFormController implements Initializable {
             new Alert(Alert.AlertType.CONFIRMATION,"There is no Member such as a given number").show();
         }
 
-       /* try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/library",
-                    "root", "1234");
 
-            PreparedStatement statement = connection.prepareStatement("delete from member where mid =?");
-            statement.setObject(1,deleteId);
-
-            int i = statement.executeUpdate();
-
-            if (i>0){
-                new Alert(Alert.AlertType.INFORMATION,"Member has been Deleted").show();
-                clearTextFields();
-
-            }else {
-                new Alert(Alert.AlertType.CONFIRMATION,"There is no Member such as a given number").show();
-            }
-
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-*/
     }
 
     public void GetAll(ActionEvent event) {
@@ -202,39 +121,6 @@ public class MemberFormController implements Initializable {
 
     public void SearchMember(ActionEvent event) {
 
-       /* String searchId = txtSearchId.getText();
-
-        try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/library",
-                    "root", "1234");
-
-            PreparedStatement statement = connection.prepareStatement("select * from member where mid=?");
-            statement.setObject(1,searchId);
-
-            ResultSet resultSet = statement.executeQuery();
-
-            if (resultSet.next()){
-
-              txtId.setText(resultSet.getString(1));
-              txtName.setText(resultSet.getString(2));
-              txtAddress.setText(resultSet.getString(3));
-              txtEmail.setText(resultSet.getString(4));
-              txtTel.setText(resultSet.getString(5));
-
-              txtSearchId.clear();
-
-            }else {
-                new Alert(Alert.AlertType.CONFIRMATION,"There is no Member such as a given number").show();
-            }
-
-
-
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }*/
 
         String searchId = txtSearchId.getText();
 

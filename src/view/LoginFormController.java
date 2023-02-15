@@ -28,7 +28,7 @@ public class LoginFormController {
         String role= LoginController.login(user);
         System.out.println(role);
 
-        if(role.equals("admin")){
+        if(role.equals("admin")||role.equals("Admin")){
             try {
                 Parent parent= FXMLLoader.load(this.getClass().getResource("AdminDashboardForm.fxml"));
                 Stage primaryStage= (Stage) root.getScene().getWindow();
@@ -41,7 +41,7 @@ public class LoginFormController {
             }
 
 
-        }else if(role.equals("user")){
+        }else if(role.equals("user")||role.equals("User")){
             try {
                 Parent parent= FXMLLoader.load(this.getClass().getResource("UserDashboardForm.fxml"));
                 Stage primaryStage= (Stage) root.getScene().getWindow();

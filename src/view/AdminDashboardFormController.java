@@ -15,7 +15,23 @@ public class AdminDashboardFormController {
     public AnchorPane root;
 
 
-    public void BookLogin(ActionEvent event) {
+
+    public void userOnAction(ActionEvent event) {
+        try {
+            Parent parent= FXMLLoader.load(this.getClass().getResource("UsersForm.fxml"));
+            Stage primaryStage= (Stage) root.getScene().getWindow();
+            Scene scene=new Scene(parent);
+            primaryStage.setScene(scene);
+            // primaryStage.setTitle("Login Form");
+            primaryStage.centerOnScreen();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+
+    public void bookOnAction(ActionEvent event) {
         try {
             Parent parent= FXMLLoader.load(this.getClass().getResource("BookForm.fxml"));
             Stage primaryStage= (Stage) root.getScene().getWindow();
@@ -28,8 +44,13 @@ public class AdminDashboardFormController {
         }
     }
 
-    public void backOnAction(MouseEvent mouseEvent) {
+    public void reportsOnAction(ActionEvent event) {
 
+
+    }
+
+
+    public void backOnAction(MouseEvent mouseEvent) {
         try {
             Parent parent= FXMLLoader.load(this.getClass().getResource("LoginForm.fxml"));
             Stage primaryStage= (Stage) root.getScene().getWindow();
@@ -42,4 +63,7 @@ public class AdminDashboardFormController {
         }
 
     }
+
+
+
 }

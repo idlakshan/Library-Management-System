@@ -6,8 +6,8 @@ import java.sql.*;
 
 public class LoginController {
     public static String login(User user) throws ClassNotFoundException, SQLException {
-        String userName = user.getuName();
-        String password = user.getuPassword();
+        String userName = user.getName();
+        String password = user.getPassword();
 
 
         Class.forName("com.mysql.cj.jdbc.Driver");

@@ -23,17 +23,17 @@
             <Image url="@assets/retrunBook.png" />
          </image>
       </ImageView>
-      <JFXButton buttonType="RAISED" layoutX="106.0" layoutY="322.0" onAction="#MemberLogin" prefHeight="46.0" prefWidth="131.0" style="-fx-background-color: #1e39d4; -fx-background-radius: 6px;" text="Add Member" textFill="WHITE">
+      <JFXButton buttonType="RAISED" layoutX="106.0" layoutY="322.0" onAction="#MemberOnAction" prefHeight="46.0" prefWidth="131.0" style="-fx-background-color: #1e39d4; -fx-background-radius: 6px;" text="Add Member" textFill="WHITE">
          <font>
             <Font name="Arial Rounded MT Bold" size="15.0" />
          </font>
       </JFXButton>
-      <JFXButton buttonType="RAISED" layoutX="349.0" layoutY="322.0" onAction="#bookIssue" prefHeight="46.0" prefWidth="131.0" style="-fx-background-color: #ebc807; -fx-background-radius: 6px;" text="Book Issue" textFill="WHITE">
+      <JFXButton buttonType="RAISED" layoutX="349.0" layoutY="322.0" onAction="#bookIssueOnAction" prefHeight="46.0" prefWidth="131.0" style="-fx-background-color: #ebc807; -fx-background-radius: 6px;" text="Book Issue" textFill="WHITE">
          <font>
             <Font name="Arial Rounded MT Bold" size="15.0" />
          </font>
       </JFXButton>
-      <JFXButton buttonType="RAISED" layoutX="596.0" layoutY="322.0" onAction="#bookRetrun" prefHeight="46.0" prefWidth="131.0" style="-fx-background-color: #1eeb07; -fx-background-radius: 6px;" text="Book Return" textFill="WHITE">
+      <JFXButton buttonType="RAISED" layoutX="596.0" layoutY="322.0" onAction="#bookReturnOnAction" prefHeight="46.0" prefWidth="131.0" style="-fx-background-color: #1eeb07; -fx-background-radius: 6px;" text="Book Return" textFill="WHITE">
          <font>
             <Font name="Arial Rounded MT Bold" size="15.0" />
          </font>

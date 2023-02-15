@@ -1,58 +1,58 @@
 package model;
 
 public class User {
-    private String uId;
-    private String uName;
-    private String uEmail;
-    private String uPassword;
+    private String id;
+    private String name;
+    private String email;
+    private String password;
     private String role;
 
     public User() {
     }
 
-    public User(String uName, String uPassword) {
-        this.uName = uName;
-        this.uPassword = uPassword;
+    public User(String name, String password) {
+        this.name = name;
+        this.password = password;
     }
 
-    public User(String uId, String uName, String uEmail, String uPassword, String role) {
-        this.uId = uId;
-        this.uName = uName;
-        this.uEmail = uEmail;
-        this.uPassword = uPassword;
+    public User(String id, String name, String email, String password, String role) {
+        this.id = id;
+        this.name = name;
+        this.email = email;
+        this.password = password;
         this.role = role;
     }
 
-    public String getuId() {
-        return uId;
+    public String getId() {
+        return id;
     }
 
-    public void setuId(String uId) {
-        this.uId = uId;
+    public void setId(String id) {
+        this.id = id;
     }
 
-    public String getuName() {
-        return uName;
+    public String getName() {
+        return name;
     }
 
-    public void setuName(String uName) {
-        this.uName = uName;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getuEmail() {
-        return uEmail;
+    public String getEmail() {
+        return email;
     }
 
-    public void setuEmail(String uEmail) {
-        this.uEmail = uEmail;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
-    public String getuPassword() {
-        return uPassword;
+    public String getPassword() {
+        return password;
     }
 
-    public void setuPassword(String uPassword) {
-        this.uPassword = uPassword;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public String getRole() {

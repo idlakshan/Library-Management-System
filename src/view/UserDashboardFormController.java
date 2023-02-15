@@ -16,28 +16,6 @@ public class UserDashboardFormController {
     public AnchorPane root;
 
 
-    public void MemberLogin(ActionEvent event) {
-
-        try {
-            Parent parent= FXMLLoader.load(this.getClass().getResource("MemberForm.fxml"));
-            Stage primaryStage= (Stage) root.getScene().getWindow();
-            Scene scene=new Scene(parent);
-            primaryStage.setScene(scene);
-           // primaryStage.setTitle("Login Form");
-            primaryStage.centerOnScreen();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-    }
-
-    public void bookIssue(ActionEvent event) {
-
-    }
-
-    public void bookRetrun(ActionEvent event) {
-
-    }
 
     public void backOnAction(MouseEvent mouseEvent) {
 
@@ -53,5 +31,25 @@ public class UserDashboardFormController {
         }
 
 
+    }
+
+    public void MemberOnAction(ActionEvent event) {
+        try {
+            Parent parent= FXMLLoader.load(this.getClass().getResource("MemberForm.fxml"));
+            Stage primaryStage= (Stage) root.getScene().getWindow();
+            Scene scene=new Scene(parent);
+            primaryStage.setScene(scene);
+            // primaryStage.setTitle("Login Form");
+            primaryStage.centerOnScreen();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void bookIssueOnAction(ActionEvent event) {
+
+    }
+
+    public void bookReturnOnAction(ActionEvent event) {
     }
 }

@@ -71,7 +71,6 @@ public class MemberController {
         return false;
     }
 
-
     public static boolean deleteMember(String deleteId){
 
         try {
@@ -99,7 +98,6 @@ public class MemberController {
         return false;
     }
 
-
     public static Member searchMember(String searchId){
 
         try {
@@ -125,8 +123,6 @@ public class MemberController {
             }else {
                 new Alert(Alert.AlertType.CONFIRMATION,"There is no Member such as a given number").show();
             }
-
-
 
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
@@ -168,7 +164,6 @@ public class MemberController {
             e.printStackTrace();
         }
             return null;
-
     }
 
 }
