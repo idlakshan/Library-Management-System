@@ -47,6 +47,16 @@ public class UserDashboardFormController {
     }
 
     public void bookIssueOnAction(ActionEvent event) {
+        try {
+            Parent parent= FXMLLoader.load(this.getClass().getResource("IssueForm.fxml"));
+            Stage primaryStage= (Stage) root.getScene().getWindow();
+            Scene scene=new Scene(parent);
+            primaryStage.setScene(scene);
+            // primaryStage.setTitle("Login Form");
+            primaryStage.centerOnScreen();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
     }
 

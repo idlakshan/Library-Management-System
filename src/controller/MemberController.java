@@ -46,7 +46,7 @@ public class MemberController {
             Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/library",
                     "root", "1234");
 
-            PreparedStatement statement = connection.prepareStatement("update member set name=?,address=?,email=?,tel=? where mid=?");
+            PreparedStatement statement = connection.prepareStatement("update member set mName=?,address=?,email=?,tel=? where mId=?");
 
             statement.setObject(1,member.getName());
             statement.setObject(2,member.getAddress());
@@ -77,7 +77,7 @@ public class MemberController {
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/library",
                     "root", "1234");
-            PreparedStatement statement = connection.prepareStatement("delete from member where mid =?");
+            PreparedStatement statement = connection.prepareStatement("delete from member where mId =?");
 
             statement.setObject(1,deleteId);
 
@@ -104,7 +104,7 @@ public class MemberController {
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/library",
                     "root", "1234");
-            PreparedStatement statement = connection.prepareStatement("select * from member where mid=?");
+            PreparedStatement statement = connection.prepareStatement("select * from member where mId=?");
 
             statement.setObject(1,searchId);
             ResultSet resultSet = statement.executeQuery();

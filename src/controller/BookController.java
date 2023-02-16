@@ -71,7 +71,7 @@ public class BookController {
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/library",
                     "root", "1234");
-            PreparedStatement statement = connection.prepareStatement("update book set name=?,author=?,qty=?,price=? where bid=?");
+            PreparedStatement statement = connection.prepareStatement("update book set bname=?,author=?,qty=?,price=? where bid=?");
 
             statement.setObject(1,book.getName());
             statement.setObject(2,book.getAuthor());
