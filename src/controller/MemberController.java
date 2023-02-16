@@ -165,5 +165,18 @@ public class MemberController {
         }
             return null;
     }
+    public ArrayList<String> getMemberIds() throws SQLException, ClassNotFoundException {
+        Class.forName("com.mysql.cj.jdbc.Driver");
+        Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/library",
+                "root", "1234");
+        PreparedStatement statement = connection.prepareStatement("select * from member");
+        ArrayList<String> memberIds = new ArrayList<>();
+        ResultSet resultSet = statement.executeQuery();
+
+        while (resultSet.next()) {
+            memberIds.add(resultSet.getString(1));
+        }
+        return memberIds;
+    }
 
 }

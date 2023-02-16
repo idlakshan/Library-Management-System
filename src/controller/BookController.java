@@ -171,4 +171,19 @@ public class BookController {
 
         return null;
     }
+
+    public ArrayList<String> getBookIds() throws ClassNotFoundException, SQLException {
+        Class.forName("com.mysql.cj.jdbc.Driver");
+        Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/library",
+                "root", "1234");
+        PreparedStatement statement = connection.prepareStatement("select * from book");
+        ArrayList<String> bookIds = new ArrayList<>();
+        ResultSet resultSet = statement.executeQuery();
+
+        while (resultSet.next()) {
+            bookIds.add(resultSet.getString(1));
+        }
+        return bookIds;
+    }
+
 }
