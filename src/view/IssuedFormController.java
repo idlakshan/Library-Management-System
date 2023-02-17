@@ -2,6 +2,7 @@ package view;
 
 import com.jfoenix.controls.JFXTextField;
 import controller.BookController;
+import controller.IssuedController;
 import controller.MemberController;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
@@ -9,15 +10,22 @@ import javafx.animation.Timeline;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 import javafx.util.Duration;
 import model.Book;
+import model.Issued;
+import model.IssuedDetails;
 import model.Member;
 import view.tm.CartTm;
 
+import java.io.IOException;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
@@ -26,7 +34,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Observable;
 
-public class IssueFormController {
+public class IssuedFormController {
 
     public AnchorPane root;
     public TableView tblIssued;
@@ -46,6 +54,8 @@ public class IssueFormController {
     public Label lblTime;
     public Label lblDate;
 
+    int cartSelectedRow=-1;
+
     public void initialize(){
         colBookId.setCellValueFactory(new PropertyValueFactory<>("BookId"));
         colMemberId.setCellValueFactory(new PropertyValueFactory<>("memId"));
@@ -56,6 +66,7 @@ public class IssueFormController {
 
 
         loadTimeAndDate();
+        setIssuedId();
         try {
             loadAllMemberIds();
             loadAllBookIds();
@@ -81,12 +92,31 @@ public class IssueFormController {
 
                 setBookData(newValue);
         } );
+
+        tblIssued.getSelectionModel().selectedIndexProperty().addListener((observable, oldValue, newValue) -> {
+           cartSelectedRow= (int) newValue;
+
+
+        });
+
+
+    }
+
+    private void setIssuedId(){
+        try {
+            lblIssuedID.setText(IssuedController.getIssuedId());
+
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     private void setBookData(String bookId) {
         Book book = BookController.searchBook(bookId);
         if (book==null){
-            new Alert(Alert.AlertType.WARNING,"Empty Results");
+            new Alert(Alert.AlertType.WARNING,"Empty Results").show();
         }else {
             txtBookName.setText(book.getName());
             txtQtyOnHand.setText(String.valueOf(book.getQty()));
@@ -97,7 +127,7 @@ public class IssueFormController {
     private void setMemberData(String memberId) throws SQLException, ClassNotFoundException {
         Member member = MemberController.searchMember(memberId);
         if (member==null){
-            new Alert(Alert.AlertType.WARNING,"Empty Results");
+            new Alert(Alert.AlertType.WARNING,"Empty Results").show();
         }else {
                txtMemberName.setText(member.getName());
         }
@@ -133,10 +163,43 @@ public class IssueFormController {
     }
 
     public void BackOnAction(MouseEvent mouseEvent) {
+        try {
+            Parent parent= FXMLLoader.load(this.getClass().getResource("UserDashboardForm.fxml"));
+            Stage primaryStage= (Stage) root.getScene().getWindow();
+            Scene scene=new Scene(parent);
+            primaryStage.setScene(scene);
+            primaryStage.centerOnScreen();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
     }
 
     public void Issued(ActionEvent event) {
+        ArrayList<IssuedDetails> books=new ArrayList<>();
+        for (CartTm tempTm:obList
+             ) {
+            books.add(new IssuedDetails(
+                    tempTm.getBookId(),
+                    tempTm.getQty()
+            ));
+        }
+
+        Issued issued = new Issued(
+                lblIssuedID.getText(),
+                cmbMemId.getValue(),
+                lblDate.getText(),
+                lblTime.getText(),
+                books
+
+        );
+        if(IssuedController.issuedBooks(issued)){
+            new Alert(Alert.AlertType.CONFIRMATION,"Success").show();
+            setIssuedId();
+        }else {
+            new Alert(Alert.AlertType.WARNING,"Failed").show();
+        }
+
 
     }
 
@@ -176,6 +239,7 @@ public class IssueFormController {
            }
            obList.remove(rowNumber);
            obList.add(newTm);
+
        }
 
            tblIssued.setItems(obList);
@@ -192,4 +256,24 @@ public class IssueFormController {
     }
 
 
+    public void clear(ActionEvent event) {
+        if(cartSelectedRow==-1){
+            new Alert(Alert.AlertType.WARNING,"Please Select a Row").show();
+        }else {
+            obList.remove(cartSelectedRow);
+            tblIssued.refresh();
+            new Alert(Alert.AlertType.CONFIRMATION,"Done").show();
+            clearTextFields();
+        }
+    }
+
+    void clearTextFields(){
+        //cmbBookId.getSelectionModel().clearSelection();
+        //cmbMemId.getSelectionModel().clearSelection();
+        txtBookName.clear();
+        txtQty.clear();
+        txtQtyOnHand.clear();
+        txtMemberName.clear();
+        dateReturn.setValue(LocalDate.now());
+    }
 }

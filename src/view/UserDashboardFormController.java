@@ -9,7 +9,6 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.net.URL;
 
 public class UserDashboardFormController {
 
@@ -48,7 +47,7 @@ public class UserDashboardFormController {
 
     public void bookIssueOnAction(ActionEvent event) {
         try {
-            Parent parent= FXMLLoader.load(this.getClass().getResource("IssueForm.fxml"));
+            Parent parent= FXMLLoader.load(this.getClass().getResource("IssuedForm.fxml"));
             Stage primaryStage= (Stage) root.getScene().getWindow();
             Scene scene=new Scene(parent);
             primaryStage.setScene(scene);
