@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane fx:id="root" onMouseClicked="#BackOnAction" prefHeight="561.0" prefWidth="842.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.ReportFormController">
+   <children>
+      <Label layoutX="334.0" layoutY="14.0" prefHeight="61.0" prefWidth="174.0" text="Daily Report" underline="true">
+         <font>
+            <Font name="Arial Rounded MT Bold" size="26.0" />
+         </font>
+      </Label>
+      <TableView fx:id="tblIssued" layoutX="21.0" layoutY="124.0" prefHeight="394.0" prefWidth="806.0">
+        <columns>
+          <TableColumn fx:id="colIssuedId" prefWidth="104.0" text="Issued ID" />
+          <TableColumn fx:id="colMemberId" prefWidth="109.0" text="Member ID" />
+            <TableColumn fx:id="colDate" prefWidth="193.0" text="Date" />
+            <TableColumn fx:id="colTime" prefWidth="192.0" text="Time" />
+            <TableColumn fx:id="colBookId" prefWidth="111.0" text="Book ID" />
+            <TableColumn fx:id="colQty" prefWidth="96.0" text="Qty" />
+        </columns>
+      </TableView>
+      <ImageView fitHeight="61.0" fitWidth="59.0" layoutX="14.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@assets/back.jpg" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>

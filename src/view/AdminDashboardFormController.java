@@ -45,7 +45,16 @@ public class AdminDashboardFormController {
     }
 
     public void reportsOnAction(ActionEvent event) {
-
+        try {
+            Parent parent= FXMLLoader.load(this.getClass().getResource("ReportForm.fxml"));
+            Stage primaryStage= (Stage) root.getScene().getWindow();
+            Scene scene=new Scene(parent);
+            primaryStage.setScene(scene);
+            // primaryStage.setTitle("Login Form");
+            primaryStage.centerOnScreen();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
     }
 
